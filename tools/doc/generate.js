@@ -23,6 +23,8 @@
 var marked = require('marked');
 var fs = require('fs');
 var path = require('path');
+var i18n = require('../../i18n.json');
+var translate = require('./translate.js');
 
 // parse the args.
 // Don't use nopt or whatever for this.  It's simple enough.
@@ -47,6 +49,7 @@ if (!inputFile) {
   throw new Error('No input file specified');
 }
 
+translate.generateTranslationFiles(inputFile, i18n);
 
 console.error('Input file = %s', inputFile);
 fs.readFile(inputFile, 'utf8', function(er, input) {
